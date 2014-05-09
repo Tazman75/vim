@@ -1,4 +1,5 @@
 syntax on
+set t_Co=256
 set encoding=utf-8
 set clipboard=unnamed
 "set number
@@ -38,6 +39,10 @@ nnoremap <leader>v :vnew<CR>
 
 nnoremap <leader>s :UltiSnipsEdit<CR>
 nnoremap <leader>o :only<CR>
+nnoremap <leader>b :CommandTBuffer<CR>
+vnoremap <S-s> :ScreenSend<CR>
+
+
 inoremap <S-Tab> <C-o><<
 
 filetype off
@@ -52,8 +57,13 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'desert-warm-256'
 Bundle 'SirVer/ultisnips'
 Bundle 'rstacruz/vim-ultisnips-css'
-
+Bundle 'wincent/Command-T'
 Bundle 'ervandew/supertab'
+Bundle 'ervandew/screen'
+
+colorscheme desert-warm-256
+let g:vundle_default_git_proto = 'git'
+
 " make YCM compatible with UltiSnips (using supertab)
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
@@ -67,8 +77,6 @@ let g:UltiSnipsEditSplit="vertical"
 
 filetype plugin indent on
 
-set t_Co=256
-colorscheme desert-warm-256
 
 set hidden
 
@@ -85,3 +93,7 @@ let $PAGER=''
 
 au Filetype python setl et ts=4 sw=4
 au BufWritePost .vimrc so ~/.vimrc
+
+let g:ScreenImpl = "Tmux"
+let g:ScreenShellSendPrefix = "%cpaste"
+let g:ScreenShellSendSuffix = "--"
