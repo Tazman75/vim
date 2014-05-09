@@ -33,6 +33,8 @@ nnoremap <leader>j :YcmCompleter GoTo<CR>
 nnoremap <leader>l :tabnext<CR>
 nnoremap <leader>h :tabprev<CR>
 nnoremap <leader>v :vsplit<CR>
+
+nnoremap <leader>s :UltiSnipsEdit<CR>
 inoremap <S-Tab> <C-o><<
 
 filetype off
@@ -47,6 +49,17 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'desert-warm-256'
 Bundle 'SirVer/ultisnips'
 Bundle 'rstacruz/vim-ultisnips-css'
+
+Bundle 'ervandew/supertab'
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+"
+" " better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 filetype plugin indent on
 
@@ -66,3 +79,7 @@ let g:ycm_confirm_extra_conf = 0
 let $PAGER=''
 
 au Filetype python setl et ts=4 sw=4
+
+"Ultisnip
+let g:UltiSnipsEditSplit="vertical"
+
