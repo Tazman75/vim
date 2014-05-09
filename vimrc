@@ -2,7 +2,7 @@ syntax on
 set encoding=utf-8
 set clipboard=unnamed
 "set number
-set tabstop=8 shiftwidth=8 "expandtab
+set tabstop=4 shiftwidth=4 softtabstop=4 "expandtab
 
 set nocompatible
 set nowrap
@@ -23,18 +23,21 @@ set pastetoggle=<F2>
 "
 "Whitespace highlighting
 set list
-set listchars=tab:>.,trail:.,extends:#,nbsp:.
+"Special white space Ctrl-V u2002
+set listchars=tab:> ,trail:.,extends:#,nbsp:.
 autocmd filetype html,xml set listchars-=tab:>.
 
 let mapleader=","
 nmap ; :
 nmap <leader>n :NERDTreeToggle<CR>
-nnoremap <leader>j :YcmCompleter GoTo<CR>
+nnoremap <leader>j :YcmCompleter GoToDefinitionElseDeclaration<CR>
+"nnoremap <leader>j :YcmCompleter GoTo<CR>
 nnoremap <leader>l :tabnext<CR>
 nnoremap <leader>h :tabprev<CR>
-nnoremap <leader>v :vsplit<CR>
+nnoremap <leader>v :vnew<CR>
 
 nnoremap <leader>s :UltiSnipsEdit<CR>
+nnoremap <leader>o :only<CR>
 inoremap <S-Tab> <C-o><<
 
 filetype off
@@ -60,6 +63,7 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsEditSplit="vertical"
 
 filetype plugin indent on
 
@@ -71,6 +75,7 @@ set hidden
 " let g:ycm_open_loclist_on_ycm_diags = 1
 " let g:ycm_filetype_whitelist = { 'c': 1, 'cpp': 1 }
 let g:ycm_confirm_extra_conf = 0
+let g:ycm_autoclose_preview_window_after_completion=1
 "set mouse=a
 
 
@@ -79,7 +84,4 @@ let g:ycm_confirm_extra_conf = 0
 let $PAGER=''
 
 au Filetype python setl et ts=4 sw=4
-
-"Ultisnip
-let g:UltiSnipsEditSplit="vertical"
-
+au BufWritePost .vimrc so ~/.vimrc
